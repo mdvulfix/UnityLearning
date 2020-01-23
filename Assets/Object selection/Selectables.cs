@@ -16,13 +16,8 @@ public class Selectables : MonoBehaviour, ISelectHandler, IDeselectHandler, IPoi
     [SerializeField]
     bool isSelected = false;
 
-    [SerializeField]
-    Material greenMat;
-
-     [SerializeField]
-    Material blueMat;
     
-    //Color standart;
+    Color standart;
 
     
     void Awake() 
@@ -31,7 +26,7 @@ public class Selectables : MonoBehaviour, ISelectHandler, IDeselectHandler, IPoi
         allSelectables.Add(this);
 
         objRenderer = GetComponent<Renderer>();
-        //standart = objRenderer.material.color;
+        standart = objRenderer.material.color;
 
     }
 
@@ -43,21 +38,24 @@ public class Selectables : MonoBehaviour, ISelectHandler, IDeselectHandler, IPoi
 
 
     
-    public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData click)
     {
         //Messager.SendMassege("Произведено выделение объекта: " + click);
-        OnSelect(eventData);
+        OnSelect(click);
         
 
 
     }
 
-    public void OnSelect(BaseEventData eventData)
+    public void OnSelect(BaseEventData click)
     {
-        
-        DeselectAll(eventData);
-        objRenderer.material = greenMat;
-        Messager.SendMassege("Select");
+        if(!Input.GetKey(KeyCode.RightControl) && !Input.GetKey(KeyCode.LeftControl))
+        {
+            DeselectAll(click);
+        }
+            
+        objRenderer.material.color = Color.green;
+        //Messager.SendMassege("Select");
         
         hasBeenSelected.Add(this);
         isSelected = true;
@@ -65,20 +63,20 @@ public class Selectables : MonoBehaviour, ISelectHandler, IDeselectHandler, IPoi
 
     }
 
-    public void OnDeselect(BaseEventData eventData)
+    public void OnDeselect(BaseEventData click)
     {
-        objRenderer.material = blueMat;
+        objRenderer.material.color = standart;
         isSelected = false;
-        Messager.SendMassege("Deselect");
+        //Messager.SendMassege("Deselect");
 
     }
 
-    public static void DeselectAll(BaseEventData eventData)
+    public static void DeselectAll(BaseEventData click)
     {
 
         foreach (Selectables selectables in hasBeenSelected)
         {
-            selectables.OnDeselect(eventData);
+            selectables.OnDeselect(click);
         }
         hasBeenSelected.Clear();
 
