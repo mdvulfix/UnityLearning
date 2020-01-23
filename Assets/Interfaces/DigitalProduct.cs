@@ -6,7 +6,12 @@ public class DigitalProduct : IProduct
 {
     public string Title {get; set;} 
     public bool HasOrderBeenCompleted {get; private set;}
-    public int Downloads {get; private set;} = 5;
+    public int Downloads {get; private set;}
+
+
+    void Awake() {
+        Downloads = 5;
+    }
 
     public DigitalProduct(string title)
     {

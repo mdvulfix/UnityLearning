@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4482447, g: 0.4982717, b: 0.57558084, a: 1}
+  m_IndirectSpecularColor: {r: 0.4482447, g: 0.49827182, b: 0.5755813, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -374,6 +374,7 @@ GameObject:
   - component: {fileID: 1012948588}
   - component: {fileID: 1012948587}
   - component: {fileID: 1012948586}
+  - component: {fileID: 1012948589}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -414,7 +415,7 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
+  orthographic: 1
   orthographic size: 5
   m_Depth: -1
   m_CullingMask:
@@ -445,6 +446,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1012948589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012948585}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1690312454, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 15
 --- !u!1 &1122400564
 GameObject:
   m_ObjectHideFlags: 0
@@ -696,17 +713,17 @@ PrefabInstance:
     - target: {fileID: 8763435742797930875, guid: c9eb74917c286ef4b99e4f8b3b0fdf31,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3765948
+      value: -3.63
       objectReference: {fileID: 0}
     - target: {fileID: 8763435742797930875, guid: c9eb74917c286ef4b99e4f8b3b0fdf31,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.6328125
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8763435742797930875, guid: c9eb74917c286ef4b99e4f8b3b0fdf31,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.4884013
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8763435742797930875, guid: c9eb74917c286ef4b99e4f8b3b0fdf31,
         type: 3}
