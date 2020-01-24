@@ -4,20 +4,31 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DragSelectionHandler : MonoBehaviour, IDragHandler ,IBeginDragHandler//, IEndDragHandler
+public class DragSelectionHandler : MonoBehaviour, IDragHandler ,IBeginDragHandler, IEndDragHandler
 {
-
-    Vector2 selectorStartPoint;
+    
+    [SerializeField]
+    Image _DragSelectionBox;
+    
     Rect rect;
-    Image image;
+    Vector2 selectorStartPoint;
     
-    
+    void Awake() {
+        _DragSelectionBox.gameObject.SetActive(false);
+
+    }
+
+
     public void OnBeginDrag(PointerEventData eventData)
     {
 
-        image = GetComponent<Image>();
-        image.gameObject.SetActive(true);
-
+        Debug.Log("Start dragging");
+        if(!Input.GetKey(KeyCode.RightControl) && !Input.GetKey(KeyCode.LeftControl))
+        {
+            Selectables.DeselectAll(new BaseEventData(EventSystem.current));
+        }
+        
+        _DragSelectionBox.gameObject.SetActive(true);
         selectorStartPoint = eventData.position;
         rect = new Rect();
         
@@ -26,6 +37,11 @@ public class DragSelectionHandler : MonoBehaviour, IDragHandler ,IBeginDragHandl
     
     public void OnDrag(PointerEventData eventData)
     {
+        
+      
+        
+        Debug.Log("Continue dragging");
+        
         if (eventData.position.x < selectorStartPoint.x)
         {
             rect.xMin = eventData.position.x;
@@ -50,33 +66,22 @@ public class DragSelectionHandler : MonoBehaviour, IDragHandler ,IBeginDragHandl
             
         }
 
-        image.rectTransform.offsetMin = rect.min;
-        image.rectTransform.offsetMax = rect.max;
+        _DragSelectionBox.GetComponent<Image>().rectTransform.offsetMin = rect.min;
+        _DragSelectionBox.GetComponent<Image>().rectTransform.offsetMax = rect.max;
 
     }
 
  
-    /*
+    
     public void OnEndDrag(PointerEventData eventData)
     {
-
-        selectables.DeselectAll(eventData);
-
-    }
-
-    public static void DeselectAll(BaseEventData eventData)
-    {
-
-        foreach (Selectables selectables in hasBeenSelected)
+        Debug.Log("Stop dragging");
+        _DragSelectionBox.gameObject.SetActive(false);
+        foreach (Selectables selectables in Selectables.allSelectables)
         {
-            selectables.OnDeselect(eventData);
+            if(rect.Contains(Camera.main.WorldToScreenPoint(selectables.transform.position)))
+            selectables.OnSelect(eventData);
         }
-        hasBeenSelected.Clear();
-
-
     }
-    */
-
-
 
 }

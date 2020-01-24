@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8505970367729652792}
   - component: {fileID: 8681866028480931557}
   - component: {fileID: 2285424339865658399}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,5 +105,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSelected: 0
-  greenMat: {fileID: 2100000, guid: c28f9655811bb714182c5e0ee4f3dd0e, type: 2}
-  blueMat: {fileID: 2100000, guid: f4ca985ed0e0ca5438b4aaf7fb98d533, type: 2}

@@ -41,6 +41,10 @@ public class Selectables : MonoBehaviour, ISelectHandler, IDeselectHandler, IPoi
     public void OnPointerClick(PointerEventData click)
     {
         //Messager.SendMassege("Произведено выделение объекта: " + click);
+        if(!Input.GetKey(KeyCode.RightControl) && !Input.GetKey(KeyCode.LeftControl))
+        {
+            DeselectAll(click);
+        }
         OnSelect(click);
         
 
@@ -48,21 +52,16 @@ public class Selectables : MonoBehaviour, ISelectHandler, IDeselectHandler, IPoi
     }
 
     public void OnSelect(BaseEventData click)
-    {
-        if(!Input.GetKey(KeyCode.RightControl) && !Input.GetKey(KeyCode.LeftControl))
-        {
-            DeselectAll(click);
-        }
-            
+    {            
         objRenderer.material.color = Color.green;
         //Messager.SendMassege("Select");
         
         hasBeenSelected.Add(this);
         isSelected = true;
 
-
     }
 
+    
     public void OnDeselect(BaseEventData click)
     {
         objRenderer.material.color = standart;
@@ -70,13 +69,13 @@ public class Selectables : MonoBehaviour, ISelectHandler, IDeselectHandler, IPoi
         //Messager.SendMassege("Deselect");
 
     }
-
+    
     public static void DeselectAll(BaseEventData click)
     {
 
         foreach (Selectables selectables in hasBeenSelected)
         {
-            selectables.OnDeselect(click);
+            //selectables.OnDeselect(click);
         }
         hasBeenSelected.Clear();
 
