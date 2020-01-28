@@ -25,7 +25,7 @@ public class SelectionClickHandler : MonoBehaviour, ISelectHandler, IDeselectHan
         //OnSelect(eventData);
         //mouseClickPosition = eventData.position;
         Vector2 objOnScreen = new Vector2();
-        Utility.WorldToScreenPoint(selectObject.transform.position, out objOnScreen);
+        //Utility.WorldToScreenPoint(selectObject.transform.position, out objOnScreen);
         
         Debug.Log("Позиция объекта: " + objOnScreen);
         foreach (SelectableObject sObj in SelectableObject.AllSelectableObjects)
