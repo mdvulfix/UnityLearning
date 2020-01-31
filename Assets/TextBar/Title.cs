@@ -12,9 +12,13 @@ public class Title : MonoBehaviour
     Bounds objBounds;
     Vector3 pos, posbox;
     public Vector2 min, max;
+
+    public RectTransform UI_Element;
+    public Canvas can;
     
     private void Awake()
     {
+        
         //UpdateRect();
         objRenderer = GetComponent<Renderer>();
         objBounds = objRenderer.bounds;
@@ -22,10 +26,12 @@ public class Title : MonoBehaviour
         pos = Camera.main.WorldToScreenPoint(objBounds.center);
         //Messager.SendMassege(pos.ToString());
         title.transform.position = pos;
+        
     }
     
     private void Update() 
     {
+        
         objBounds = objRenderer.bounds;
         pos = Camera.main.WorldToScreenPoint(objBounds.center);
         posbox = Camera.main.WorldToScreenPoint(objBounds.center);
@@ -38,10 +44,11 @@ public class Title : MonoBehaviour
         posbox.x = posbox.x - Screen.width/2;
         
         box.transform.localPosition = posbox;
+        
         //box.rectTransform.offsetMin = min;
         //box.rectTransform.offsetMax = max;
         
-        
+        GetInfo();
         
         
         //Vector3 titlePos = camera.WorldToScreenPoint(this.transform.position);
@@ -52,14 +59,54 @@ public class Title : MonoBehaviour
         //Vector2 screnPosition = new Vector2();
         //Utility.WorldToScreenPoint(transform.position, out screnPosition);
         //title.transform.position = screnPosition;
+
+        //this is your object that you want to have the UI element hovering over
+    
+        //this is the ui element
+        
+
+    
+    
+ 
+        /*
+        //first you need the RectTransform component of your canvas
+        RectTransform CanvasRect = can.GetComponent<RectTransform>();
+
+        //then you calculate the position of the UI element
+        //0,0 for the canvas is at the center of the screen, whereas WorldToViewPortPoint treats the lower left corner as 0,0. Because of this, you need to subtract the height / width of the canvas * 0.5f to get the correct position.
+
+        Vector2 ViewportPosition = Camera.main.WorldToViewportPoint(transform.position);
+        Vector2 WorldObject_ScreenPosition = new Vector2(
+            ((ViewportPosition.x * CanvasRect.sizeDelta.x)-(CanvasRect.sizeDelta.x * 0.5f)),
+           ((ViewportPosition.y * CanvasRect.sizeDelta.y)-(CanvasRect.sizeDelta.y * 0.5f)));
+
+        //now you can set the position of the ui element
+        
+        //Vector2 WorldObject_ScreenPosition = new Vector2(ViewportPosition.x * CanvasRect.sizeDelta.x,ViewportPosition.y * CanvasRect.sizeDelta.y); 
+        
+        
+        
+        
+        UI_Element.anchoredPosition = WorldObject_ScreenPosition;
+        */
+
+
+
+
+
     }
 
-    private void UpdateRect()
+    private void GetInfo()
     {
+        if(Input.GetMouseButtonUp(0))
+        {
+            Messager.SendMassege(Camera.main.WorldToViewportPoint(objBounds.center).ToString());
+            Messager.SendMassege(Camera.main.WorldToViewportPoint(objBounds.center + objBounds.extents).ToString());
+            Messager.SendMassege(Camera.main.WorldToViewportPoint(objBounds.center - objBounds.extents).ToString());
+            //Messager.SendMassege(Camera.main.WorldToViewportPoint(objBounds.center + objBounds.extents).ToString());
+            //Messager.SendMassege(Camera.main.WorldToScreenPoint(objBounds.center + objBounds.extents).ToString());
 
-        box.rectTransform.offsetMin = GetComponent<Renderer>().bounds.min;
-        box.rectTransform.offsetMax = GetComponent<Renderer>().bounds.max;
-
+        }
     }
 
 }
