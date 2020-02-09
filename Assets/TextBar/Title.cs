@@ -18,7 +18,7 @@ public class Title : MonoBehaviour
     
     private void Awake()
     {
-        
+
         //UpdateRect();
         objRenderer = GetComponent<Renderer>();
         objBounds = objRenderer.bounds;
@@ -26,7 +26,7 @@ public class Title : MonoBehaviour
         pos = Camera.main.WorldToScreenPoint(objBounds.center);
         //Messager.SendMassege(pos.ToString());
         title.transform.position = pos;
-        
+            
     }
     
     private void Update() 
@@ -110,3 +110,4 @@ public class Title : MonoBehaviour
     }
 
 }
+
