@@ -10,8 +10,7 @@ namespace DesignPatterns
         void Start()
         {
 
-            Scout scout = new Scout();
-            scout.Move();
+
 
         }
     }

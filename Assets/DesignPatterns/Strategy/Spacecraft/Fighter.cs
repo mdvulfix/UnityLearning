@@ -1,23 +1,27 @@
-﻿using System;
-using UnityEngine;
-
-namespace DesignPatterns
+﻿namespace DesignPatterns
 {
-    [System.Serializable]
-    public class Spacecraft : SpacecraftBase, ISpacecraft
+    
+    public class Fighter : Spacecraft
     {
         
         
-        [SerializeField] int speed;
+        
         #region Constractor
-        public Spacecraft()
+        public Fighter()
         {
             parameters = new SpacecraftParametersDefault(this);
             movingBehaviour = new SpacecraftMovingDefault(this, parameters.Speed);
-
-            this.speed = movingBehaviour.Speed;
         }   
         #endregion
+
+        private void Update() 
+        {
+            
+            movingBehaviour.Move();
+
+
+
+        }
 
         
     }
