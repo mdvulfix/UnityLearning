@@ -4,20 +4,17 @@
     public class Scout : Spacecraft
     {
         
-        
-        
-        #region Constractor
         public Scout()
         {
-            parameters = new SpacecraftParametersDefault(this);
-            movingBehaviour = new SpacecraftMovingDefault(this, parameters.Speed);
-        }   
-        #endregion
+            parameters = new ScoutParameters();
+
+        }
+
 
         private void Update() 
         {
             
-            movingBehaviour.Move();
+            movingBehaviour.Move(this, parameters.Speed);
 
 
 

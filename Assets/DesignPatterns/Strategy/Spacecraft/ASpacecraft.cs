@@ -6,19 +6,27 @@ using UnityEngine;
 namespace DesignPatterns
 {
     [System.Serializable]
-    public abstract class SpacecraftBase : MonoBehaviour
+    public abstract class ASpacecraft : MonoBehaviour
     {
 
         protected ISpacecraftParameters parameters;
-        protected ISpacecraftMovable movingBehaviour;
+        protected ISpacecraftMove movingBehaviour;
+
+        public ASpacecraft()
+        {
+            parameters = new SpacecraftParametersDefault();
+            movingBehaviour = new SpacecraftMoveDefault();
+        }
+
+
 
         //Behaviour
-        public void SetMovingBehaviour(ISpacecraftMovable movingBehaviour)
+        public void SetMovingBehaviour(ISpacecraftMove movingBehaviour)
         {
             this.movingBehaviour = movingBehaviour;
         }
  
-        public ISpacecraftMovable GetMovingBehaviour()
+        public ISpacecraftMove GetMovingBehaviour()
         {
             return this.movingBehaviour;
         }

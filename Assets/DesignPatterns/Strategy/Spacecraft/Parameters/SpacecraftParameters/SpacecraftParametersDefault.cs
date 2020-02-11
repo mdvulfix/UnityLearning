@@ -3,7 +3,7 @@ using UnityEngine;
 namespace DesignPatterns
 {
 
-    public class SpacecraftParametersDefault : SpacecraftParametersBase, ISpacecraftParameters
+    public class SpacecraftParametersDefault : ASpacecraftParameters, ISpacecraftParameters
     {
         
         public int Speed {get; protected set;} // Скорость
@@ -11,12 +11,10 @@ namespace DesignPatterns
         
         #region Constructors
 
-        public SpacecraftParametersDefault(ISpacecraft spacecraft, int speed = 50 , int strength = 100)
+        public SpacecraftParametersDefault()
         {
-            this.Speed = speed;
-            this.Strength = strength;
-            SetSpacecraftInstance(spacecraft);
-
+            this.Speed = 10;
+            this.Strength = 100;
         }
         #endregion
 

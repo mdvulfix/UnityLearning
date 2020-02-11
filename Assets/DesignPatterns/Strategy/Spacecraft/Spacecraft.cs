@@ -4,18 +4,15 @@ using UnityEngine;
 namespace DesignPatterns
 {
     [System.Serializable]
-    public class Spacecraft : SpacecraftBase, ISpacecraft
+    public class Spacecraft : ASpacecraft, ISpacecraft
     {
         
-        
         [SerializeField] int speed;
+        
         #region Constractor
         public Spacecraft()
         {
-            parameters = new SpacecraftParametersDefault(this);
-            movingBehaviour = new SpacecraftMovingDefault(this, parameters.Speed);
-
-            this.speed = movingBehaviour.Speed;
+            this.speed = parameters.Speed;
         }   
         #endregion
 
