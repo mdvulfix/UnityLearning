@@ -73,7 +73,7 @@ namespace Spaceworks {
             public PlanetMergeTask(System.Action<Task> fn) : base(fn) { }
         }
 
-        private class CachedMeshHolder : IPoolable{
+        private class CachedMeshHolder : IPoolable {
             public GameObject gameObject;
             public MeshFilter filter;
             public MeshCollider collider;
@@ -83,6 +83,11 @@ namespace Spaceworks {
 
             public void OnDestroy() {
                 gameObject.SetActive(false);
+            }
+
+            public void Spawn(bool condition_spawned)
+            {
+
             }
         }
 
@@ -336,7 +341,8 @@ namespace Spaceworks {
             if (chunkMeshMap.TryGetValue(node, out mf)) {
                 //Hide and pool node
                 this.activeMeshes.Remove(mf);
-                PoolManager.Current.CustomPool(PlanetFacePoolTag).Push(mf);
+                      
+                PoolManager.Current.CustomPool(PlanetFacePoolTag).Push(mf as Spaceworks.Pooling.IPoolable);
                 //mf.collider.enabled = false;
                 mf.gameObject.SetActive(false);
                 //Discard active node
@@ -355,7 +361,7 @@ namespace Spaceworks {
             foreach (CachedMeshHolder mf in this.activeMeshes) {
                 mf.gameObject.SetActive(false);
                 //mf.collider.enabled = false;
-                PoolManager.Current.CustomPool(PlanetFacePoolTag).Push(mf);
+                PoolManager.Current.CustomPool(PlanetFacePoolTag).Push(mf as Spaceworks.Pooling.IPoolable);
             }
             activeMeshes.Clear();
             chunkMeshMap.Clear();
@@ -392,7 +398,7 @@ namespace Spaceworks {
                 holder.collider = collider;
                 holder.renderer = meshRenderer;
 
-                meshPool.Push(holder);
+                meshPool.Push(holder as Spaceworks.Pooling.IPoolable);
             }
 
             CachedMeshHolder container = (CachedMeshHolder)meshPool.Pop();

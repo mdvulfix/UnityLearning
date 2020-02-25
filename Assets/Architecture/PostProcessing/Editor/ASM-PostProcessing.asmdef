@@ -1,0 +1,12 @@
+{
+    "name": "ASM-PostProcessing",
+    "references": [
+        "ASM-Root"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

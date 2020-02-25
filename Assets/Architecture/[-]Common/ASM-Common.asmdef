@@ -1,0 +1,11 @@
+{
+    "name": "ASM-Common",
+    "references": [
+        "ASM-Framework",
+        "Unity.TextMeshPro"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}

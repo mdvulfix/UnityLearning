@@ -1,0 +1,12 @@
+{
+    "name": "ASM-MiniProfiler",
+    "references": [
+        "ASM-ThirdParty"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
