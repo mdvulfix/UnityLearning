@@ -1,16 +1,10 @@
 ﻿namespace DesignPatterns
 {
     
-    public class Scout : Spacecraft
+    public class Fighter : Spacecraft
     {
         
-        public Scout()
-        {
-            parameters = new ScoutParameters();
-
-        }
-
-
+    
         private void Update() 
         {
             

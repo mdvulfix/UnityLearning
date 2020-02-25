@@ -1,36 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-
 
 namespace DesignPatterns
 {
-    public abstract class Spacecraft
+    [System.Serializable]
+    public class Spacecraft : ASpacecraft, ISpacecraft
     {
-
-        protected IMovable movingBehaviour;
         
-        #region Constructors
+        [SerializeField] int speed;
+        
+        #region Constractor
         public Spacecraft()
         {
-            movingBehaviour = new MovingStandart();
-        }
+            this.speed = parameters.Speed;
+        }   
         #endregion
+
         
-        public void Move()
-        {
-            movingBehaviour.Move();
-
-        }
-
-        public IMovable GetMovingBehaviour()
-        {
-            return movingBehaviour;
-        }
-
     }
-
 }
-
-
-
