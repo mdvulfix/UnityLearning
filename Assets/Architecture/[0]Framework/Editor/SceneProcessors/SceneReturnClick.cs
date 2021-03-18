@@ -16,7 +16,7 @@ namespace Homebrew
 	{
 		static SceneReturnClick()
 		{
-			SceneView.onSceneGUIDelegate += SceneGUI;
+			SceneView.duringSceneGui += SceneGUI;
 		}
 
 
